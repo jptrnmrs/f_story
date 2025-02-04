@@ -3,7 +3,9 @@ import 'package:class_f_story/ui/pages/auth/join_page/join_page.dart';
 import 'package:class_f_story/ui/pages/auth/login_page/login_page.dart';
 import 'package:class_f_story/ui/pages/post/list_page/post_list_page.dart';
 import 'package:class_f_story/ui/pages/post/write_page/post_write_page.dart';
+import 'package:class_f_story/ui/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,19 +23,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // context 가 없는 곳에서 context를 사용할 수 있게 하는 방법
-      navigatorKey: navigatorkey,
-      debugShowCheckedModeBanner: false,
-      home: LoginPage(),
-      // initialRoute: LoginPage(),
-      routes: {
-        "/login": (context) => LoginPage(),
-        "/join": (context) => JoinPage(),
-        "/post/list": (context) => PostListPage(),
-        "/post/write": (context) => PostWritePage(),
-      },
-      theme: theme(),
+    return ProviderScope(
+      child: MaterialApp(
+        // context 가 없는 곳에서 context를 사용할 수 있게 하는 방법
+        navigatorKey: navigatorkey,
+        debugShowCheckedModeBanner: false,
+        home: SplashPage(),
+        // initialRoute: LoginPage(),
+        routes: {
+          "/login": (context) => LoginPage(),
+          "/join": (context) => JoinPage(),
+          "/post/list": (context) => PostListPage(),
+          "/post/write": (context) => PostWritePage(),
+        },
+        theme: theme(),
+      ),
     );
   }
 }
